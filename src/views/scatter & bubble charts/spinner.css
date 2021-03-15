@@ -1,0 +1,40 @@
+.spinner-grow {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    background-color: currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    animation: spinner-grow .75s linear infinite;
+}
+
+.top-element-label {
+    position: absolute;
+    top: 146px;
+    width: 795px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+
+.lower-element-label {
+    position: absolute;
+    top: 445px;
+    width: 795px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0)
+    }
+
+    50% {
+        opacity: 1;
+        transform: none
+    }
+}
