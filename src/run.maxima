@@ -1,0 +1,50 @@
+
+
+(%i2) eqns : [4*xˆ2 - yˆ2 - 12 = 0, x*y - x - 2 = 0]$
+(%i3) solns : solve(eqns,[x,y]);
+(%o3) [[x = 2, y = 2], [x = 0.520259 %i - 0.133124,
+y = 0.0767838 - 3.6080032 %i], [x = - 0.520259 %i - 0.133124,
+y = 3.6080032 %i + 0.0767838], [x = - 1.7337518, y = - 0.153568]]
+(%i4) eqns,solns[1],ratsimp;
+(%o4) [0 = 0, 0 = 0]
+(%i5) for i:2 thru 4 do
+disp ( ev (eqns, solns[i],expand) )$
+[1.77635684E-15 - 6.66133815E-16 %i = 0, - 2.22044605E-16 = 0]
+[6.66133815E-16 %i + 1.77635684E-15 = 0, - 2.22044605E-16 = 0]
+[- 1.13954405E-6 = 0, - 9.38499825E-8 = 0]
+(%i6) solns[4];
+(%o6) [x = - 1.7337518, y = - 0.153568]
+(%i7) f(y) := yˆ3;
+3
+(%o7) f(y) := y
+(%i8) f(z);
+(%o8) z
+(%i9) f1(x) := diff ( f(x), x);
+(%o9) f1(x) := diff(f(x), x)
+(%i10) f2(x) := ’’(diff ( f(x), x));
+2
+(%o10) f2(x) := 3 x
+(%15) define ( f3(x), diff ( f(x), x) );
+2
+(%o16) f3(x) := 3 x
+(%i17) dplay(g,a,b) := block ( [val1,val2 ],
+local (dg),
+define ( dg(y), diff (g(y), y)),
+val1 : g(a) + dg(a),
+val2 : g(b) + dg(b),
+display (val1,val2),
+val1 + val2)$
+(%i18) g(x) := x;
+(%o18) g(x) := x
+(%i11) dplay(g,1,1);
+val1 = 2
+val2 = 2
+(%o11) 4
+ll3eqsubed:ev(alleq,a=1,b=3,c=1,d=5,r=0.001,x_1=-1.2,s=1,t0=20,length=7,amp=1)$
+xrhs:all3eqsubed[1]$
+yrhs:all3eqsubed[2]$
+zrhs:all3eqsubed[3]$
+curf:all3eqsubed[4]$
+sol1:rkf45([xrhs,yrhs,zrhs],[x,y,z],[-1.5,-11,0],[t,0,300])$
+wxtimeplot(sol1);
+wxdraw2d(points_joined=true,point_type=-1, points(makelist([p[1],p[2]],p,sol1)),color=red,explicit(curf,t,0,45),xlabel="t",ylabel="x")
