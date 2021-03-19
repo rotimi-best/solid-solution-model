@@ -37,7 +37,7 @@ body {
   padding: 0;
   position: fixed;
   top: 56px;
-  width: 250px;
+  width: 350px;
   z-index: 1000;
 }
 #sidebar > .nav {

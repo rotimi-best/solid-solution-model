@@ -8,14 +8,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 
 import {
-  Route,
+//   Route,
   BrowserRouter
 } from "react-router-dom";
 
 import ScatterChartWithCustomMarkers from "./scatter & bubble charts/Scatter Chart with Custom Markers";
-
+import Sidebar from './Sidebar';
 
 class Template extends Component {
+	state = {
+		temperature: 0,
+		shouldRebuild: false,
+	}
+
+	handleTemperatureChange = (temperature, shouldRebuild = false) => {
+		console.log(`temperature`, temperature)
+		this.setState({
+			temperature,
+			shouldRebuild
+		});
+	}
   
   render() {    
     return (
@@ -44,11 +56,19 @@ class Template extends Component {
 								
 							</ListGroup>
 						</Nav> */}
+						<Col className="flex-sm-column" id="sidebar">
+							<Container>
+								<Sidebar temp={this.state.temperature} handleTemp={this.handleTemperatureChange}/>
+							</Container>
+						</Col>
 						
 						<Col xl={{ span: 7, offset: 3 }} lg={{ span: 8, offset: 3 }} xs={{ span: 8, offset: 2 }}>
 							<Container>
 								<div className="content">
-									<Route path="/" component={ScatterChartWithCustomMarkers}/>
+									<ScatterChartWithCustomMarkers
+										{...this.state}
+										handleTemp={this.handleTemperatureChange}
+									/>
 								</div>
 							</Container>
 						</Col>					
