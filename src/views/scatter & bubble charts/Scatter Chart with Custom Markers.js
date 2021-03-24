@@ -48,7 +48,7 @@ const Hidder = ({ backgroundColor = '#32373a', position = 'left'}) => {
 
 const TempratureDrawer = ({ temperature }) => {
   const height = (temperature * 270) / 903;
-  const color = temperature === 903 ? 'green' : 'orange'
+  const color = temperature >= 903 ? 'green' : 'orange'
 
 	return (
 		<div style={{
@@ -117,7 +117,7 @@ function generateData(temp) {
 	const updatedData = [];
 	const keyTemp = 903;
 
-	if (temp === keyTemp) return initDataPoints;
+	if (temp >= keyTemp) return initDataPoints;
 
 	for (const pieceOfData of initDataPoints) {
 		let { x, y } = pieceOfData;
