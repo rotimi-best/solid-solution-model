@@ -198,7 +198,7 @@ class ScatterChartWithCustomMarkers extends Component {
 				itemclick: this.toggleDataSeries
 			},
 			data: [{
-				type: this.props.temperature === 903? "line": "scatter",
+				type: this.props.temperature >= 903? "line": "scatter",
 				name: "Раствор 1",
 				markerType: "triangle",
 				showInLegend: true,
